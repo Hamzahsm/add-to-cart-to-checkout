@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./nouislider.css">
+    <style>
+        .body {
+            color: white;
+        }
+    </style>
+</head>
+<body class="body" style="background-image: url(http://mmopilot.oesman.id/wp-content/themes/gamehoak/images/codezeel/body-bg.jpg);">
+
+    <div id="slider-padding"></div>
+    <div id="slider-padding-value-min">  </div>
+    <div id="slider-padding-value-max"> </div>
+
+    <div style="margin-top: 30px;">
+        <a href="https://refreshless.com/nouislider/" target="_blank"><button class="btn btn-primary">Deskripsi</button></a>
+    </div>
+    
+    <script src="./nouislider.js"></script>
+<script> 
+var paddingSlider = document.getElementById('slider-padding');
+
+noUiSlider.create(paddingSlider, {
+    start: [20, 80],
+    connect: true,
+    padding: [0], // Or just 10
+    range: {
+        'min': 0,
+        'max': 100
+    }
+});
+
+var paddingMin = document.getElementById('slider-padding-value-min');
+var paddingMax = document.getElementById('slider-padding-value-max');
+
+paddingSlider.noUiSlider.on('update', function (values, handle) {
+    if (handle) {
+        paddingMax.innerHTML = values[handle];
+    } else {
+        paddingMin.innerHTML = values[handle];
+    }
+});
+</script>  
+</body>
+</html>

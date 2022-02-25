@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./nouislider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <style>
+        .body {
+            color: white;
+            padding: 50px;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="body" style="background-image: url(http://mmopilot.oesman.id/wp-content/themes/gamehoak/images/codezeel/body-bg.jpg);">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div id="slider"></div>
+
+    <!-- value  -->
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div>
+        <h4 class="text-bold">From Level </h4>
+        <div id="slider-padding-value-min"></div> 
+    </div>
+
+    <div>
+        <h4 class="text-bold">To Level</h4>
+        <div id="slider-padding-value-max"></div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="https://refreshless.com/nouislider/" target="_blank"><button class="btn btn-primary">Deskripsi</button></a>
+    </div>
+    
+<script src="./nouislider.js"></script>
+<script>
+   var slider = document.getElementById('slider');
+   
+   noUiSlider.create(slider, {
+       start: [20],
+       connect: 'lower',
+       step: 1,
+       tooltips : true,
+       range: {
+           'min': 0,
+           'max': 60
+       },
+       pips : {
+        mode : 'values',
+        values : [0,10,20,30,40,50,60]
+       },
+    //    biar angkanya tidak decimal
+       format: wNumb( { decimals: 0, encoder: function(x) { return x * 2; }, prefix : '$ '})
+    //    format: wNumb( { decimals: 0, encoder: function(x) { return x * 4; }, suffix: ' lb' })
+   });
+
+var paddingMin = document.getElementById('slider-padding-value-min');
+var paddingMax = document.getElementById('slider-padding-value-max');
+
+   slider.noUiSlider.on('update', function (values, handle) {
+    if (handle) {
+        paddingMax.innerHTML = values[handle];
+    } else {
+        paddingMin.innerHTML = values[handle];
+    }
+});
+</script>  
+</body>
+</html>

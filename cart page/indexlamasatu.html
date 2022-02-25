@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./nouislider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <style>
+        .body {
+            color: white;
+            padding: 50px;
+        }
+
+        .text-bold {
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px;
+        }
+
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+
+        .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        input:checked + .slider {
+        background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        }
+
+        .kiri {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body class="body" style="background-image: url(http://mmopilot.oesman.id/wp-content/themes/gamehoak/images/codezeel/body-bg.jpg);">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div id="slider"></div>
+
+    <!-- value  -->
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div>
+        <h4 class="text-bold">From Level </h4>
+        <div id="slider-padding-value-min"></div> 
+    </div>
+
+    <div>
+        <h4 class="text-bold">To Level</h4>
+        <div id="slider-padding-value-max"></div>
+    </div>
+
+    <div>
+        <h4 class="text-bold">Total</h4>
+        <p><i>syntaks belum jadi</i></p>
+    </div>
+
+    <div>
+        <h4 class="text-bold">Topping</h4>
+        <label for="">Toping 1 ($ 10)</label>
+        <label class="switch"> 
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <label for="" class="kiri">Toping 1 ($ 20)</label>
+        <label class="switch"> 
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <label for="" class="kiri">Toping 1 ($ 30) </label>
+        <label class="switch"> 
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <label for="" class="kiri">Toping 1 ($ 40) </label>
+        <label class="switch"> 
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="#" target="_blank"><button class="btn btn-primary">Add To Cart</button></a>
+
+        <a href="https://refreshless.com/nouislider/" target="_blank"><button class="btn btn-primary">Dokumentasi</button></a>
+    </div>
+    
+<script src="./nouislider.js"></script>
+<script>
+   var slider = document.getElementById('slider');
+   
+   noUiSlider.create(slider, {
+       start: [20, 40],
+       connect: true,
+       step: 1,
+       tooltips : true,
+       range: {
+           'min': 0,
+           'max': 60
+       },
+    //    pips : {
+    //     mode : 'values',
+    //     values : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60]
+    //    },
+    //    biar angkanya tidak decimal
+       format: wNumb( { decimals: 0})
+    //    format: wNumb( { decimals: 0, encoder: function(x) { return x * 4; }, suffix: ' lb' })
+   });
+
+var paddingMin = document.getElementById('slider-padding-value-min');
+var paddingMax = document.getElementById('slider-padding-value-max');
+
+   slider.noUiSlider.on('update', function (values, handle) {
+    if (handle) {
+        paddingMax.innerHTML = values[handle];
+    } else {
+        paddingMin.innerHTML = values[handle];
+    }
+});
+</script>  
+</body>
+</html>
